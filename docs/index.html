@@ -258,7 +258,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
   .section{padding:72px 0}
 }
 </style>
-</head>
+<link rel="stylesheet" href="assets/community.css?v=5"></head>
 <body style="--accent:#14F195;--accent2:#22D3EE">
 <div class="grid-overlay"></div>
 <div class="glow one"></div>
@@ -275,6 +275,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
       <a href="#como">Cómo funciona</a>
       <a href="#arquitectura">Arquitectura</a>
       <a href="#docs">Documentación</a>
+      <a href="#comunidad">Comunidad</a>
       <a class="btn btn-ghost" style="padding:9px 15px" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </div>
@@ -392,8 +393,8 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
   <div class="wrap">
     <div class="cta-card reveal">
       <div class="kicker" style="justify-content:center">Portfolio · 21 proyectos</div>
-      <h2>¿Construimos algo así?</h2>
-      <p>¿Tenés un dispositivo con poca RAM que necesita IA? Este patrón se adapta a cualquier micro con HTTP.</p>
+      <h2>¿Te animás?</h2>
+      <p>Usá esto como base y referencia para darle IA a un ESP8266 sin meterle HTTPS ni JSON pesado, con un solo GET. Este proyecto es la prueba de que se puede hacer con componentes reales.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://wanderc137.github.io/" target="_blank" rel="noopener">Ver todos los proyectos <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn-ghost" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas" target="_blank" rel="noopener">Explorar el código</a>
@@ -445,5 +446,8 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 })();
 </script>
+
+<script>window.PORTFOLIO_COMMUNITY = {"account": "wanderc137", "repo": "proxy-openrouter-ia-chinas", "coinNamespace": "wanderc137-proxy-openrouter-ia-chinas-coins-v1", "faqs": [{"q": "¿Qué problema resuelve?", "a": "Expone un <code>GET /api/query?q=...</code> para que un ESP8266 use modelos gratuitos de OpenRouter sin implementar HTTPS, JSON pesado ni failover."}, {"q": "¿Cómo elige el modelo?", "a": "Descubre modelos $0, prioriza los chinos y hace failover cuando uno falla o devuelve 429."}, {"q": "¿Qué puerto usa?", "a": "<b>8001</b> por defecto; el firmware del ESP8266 apunta a ese puerto."}, {"q": "¿Qué pasa con los 429?", "a": "El proxy aplica cooldown y pasa al siguiente modelo del pool."}, {"q": "¿Cuáles son los límites?", "a": "Los modelos gratuitos cambian, no hay autenticación de usuarios y el pool depende de OpenRouter."}]};</script>
+<script src="assets/community.js?v=5" defer></script>
 </body>
 </html>
