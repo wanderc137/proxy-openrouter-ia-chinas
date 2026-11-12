@@ -1,0 +1,40 @@
+# Entorno virtual
+.venv/
+venv/
+env/
+
+# Cache de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Secretos / configuración local (NUNCA subir)
+.env
+*.env
+!*.env.example
+
+# Logs
+*.log
+proxy-openrouter-ia-chinas.log
+
+# Sistema / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Artefactos de ejecución
+.server.pid
+
+# ── Higiene de publicación (portfolio) ──────────────────────────────
+PLAN.md
+AUDIT_REPORT.md
+*.log
+.env
+.env.*
+!.env.example
+!.env.sample
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.DS_Store
