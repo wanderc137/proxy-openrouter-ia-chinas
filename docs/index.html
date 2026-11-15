@@ -1,24 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Un proxy. Muchos modelos. · OpenRouter Proxy</title>
-<meta name="description" content="Proxy FastAPI para modelos gratuitos de OpenRouter con prioridad china y failover automático, consumido por un ESP8266 con ArduinoJson.">
-<meta name="author" content="wanderc137">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Un proxy. Muchos modelos. · OpenRouter Proxy">
-<meta property="og:description" content="Proxy FastAPI para modelos gratuitos de OpenRouter con prioridad china y failover automático, consumido por un ESP8266 con ArduinoJson.">
-<meta property="og:url" content="https://wanderc137.github.io/proxy-openrouter-ia-chinas/">
-<meta property="og:image" content="https://wanderc137.github.io/proxy-openrouter-ia-chinas/assets/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Un proxy. Muchos modelos. · OpenRouter Proxy">
-<meta name="twitter:description" content="Proxy FastAPI para modelos gratuitos de OpenRouter con prioridad china y failover automático, consumido por un ESP8266 con ArduinoJson.">
-<meta name="twitter:image" content="https://wanderc137.github.io/proxy-openrouter-ia-chinas/assets/og.png">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2305070c'/><rect x='22' y='22' width='56' height='56' rx='12' fill='none' stroke='%2314F195' stroke-width='7'/><circle cx='50' cy='50' r='9' fill='%2314F195'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<meta content="Proxy FastAPI para modelos gratuitos de OpenRouter con prioridad china y failover automático, consumido por un ESP8266 con ArduinoJson." name="description"/>
+<meta content="wanderc137" name="author"/>
+<meta content="website" property="og:type"/>
+<meta content="Un proxy. Muchos modelos. · OpenRouter Proxy" property="og:title"/>
+<meta content="Proxy FastAPI para modelos gratuitos de OpenRouter con prioridad china y failover automático, consumido por un ESP8266 con ArduinoJson." property="og:description"/>
+<meta content="https://wanderc137.github.io/proxy-openrouter-ia-chinas/" property="og:url"/>
+<meta content="https://wanderc137.github.io/proxy-openrouter-ia-chinas/assets/og.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Un proxy. Muchos modelos. · OpenRouter Proxy" name="twitter:title"/>
+<meta content="Proxy FastAPI para modelos gratuitos de OpenRouter con prioridad china y failover automático, consumido por un ESP8266 con ArduinoJson." name="twitter:description"/>
+<meta content="https://wanderc137.github.io/proxy-openrouter-ia-chinas/assets/og.png" name="twitter:image"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;rect width='100' height='100' rx='22' fill='%2305070c'/&gt;&lt;rect x='22' y='22' width='56' height='56' rx='12' fill='none' stroke='%2314F195' stroke-width='7'/&gt;&lt;circle cx='50' cy='50' r='9' fill='%2314F195'/&gt;&lt;/svg&gt;" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scrollbar-width:none}
@@ -257,182 +258,201 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
   .foot-grid{grid-template-columns:1fr}
   .section{padding:72px 0}
 }
+
+.fail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:6px}
+.fail{background:rgba(10,18,24,.55);border:1px solid var(--line);border-radius:14px;padding:18px}
+.fail .v{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.fail h3{font-size:16px;margin:8px 0 6px}
+.fail p{font-size:14px;margin:0;color:var(--muted)}
+.rating-head{display:flex;align-items:center;gap:20px;margin:6px 0 18px;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:rgba(10,18,24,.5)}
+.rating-avg{font-family:var(--mono);font-size:40px;line-height:1;color:var(--accent)}
+.rating-avg small{font-size:14px;color:var(--muted)}
+.rating-head p{margin:4px 0 0;font-size:14px;color:var(--muted);max-width:70ch}
+.rating{display:grid;gap:2px}
+.rating-row{display:grid;grid-template-columns:165px minmax(90px,1fr) 48px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.rating-row:last-child{border-bottom:0}
+.rating-name{font-size:13.5px;color:var(--text)}
+.rating-bar{height:6px;border-radius:99px;background:rgba(148,190,200,.14);overflow:hidden}
+.rating-bar span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.rating-score{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right}
+.rating-note{grid-column:1/-1;font-size:12.5px;color:var(--muted);margin:-4px 0 8px}
+.faq{display:grid;gap:10px;margin-top:4px}
+.faq details{border:1px solid var(--line);border-radius:14px;padding:14px 18px;background:rgba(10,18,24,.4)}
+.faq summary{cursor:pointer;font-weight:600;font-size:14.5px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";float:right;color:var(--accent);font-family:var(--mono)}
+.faq details[open] summary::after{content:"−"}
+.faq p{margin:10px 0 0;font-size:14px;color:var(--muted);line-height:1.7}
+.concept-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:26px;align-items:start}
+.concept-grid p{font-size:15.5px;color:var(--muted);line-height:1.8;margin:0 0 14px}
+.concept-side{border-left:1px solid var(--line);padding-left:22px}
+.concept-side .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.concept-side p{font-size:13px;margin:6px 0 16px}
+@media(max-width:760px){.concept-grid,.fail-grid{grid-template-columns:1fr}.concept-side{border-left:0;padding-left:0}}
+
 </style>
-<link rel="stylesheet" href="assets/community.css?v=5"></head>
+<link href="assets/community.css?v=5" rel="stylesheet"/></head>
 <body style="--accent:#14F195;--accent2:#22D3EE">
 <div class="grid-overlay"></div>
 <div class="glow one"></div>
 <div class="glow two"></div>
-
 <header class="nav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="#top">
-      <span class="brand-mark"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/><circle cx="12" cy="12" r="2.5"/></svg></span>
-      <span>OpenRouter Proxy<small>Portfolio · IA &amp; APIs</small></span>
-    </a>
-    <nav class="nav-links" aria-label="Navegación">
-      <a href="#problema">Visión</a>
-      <a href="#como">Cómo funciona</a>
-      <a href="#arquitectura">Arquitectura</a>
-      <a href="#docs">Documentación</a>
-      <a href="#comunidad">Comunidad</a>
-      <a class="btn btn-ghost" style="padding:9px 15px" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-  </div>
+<div class="wrap nav-inner">
+<a class="brand" href="#top">
+<span class="brand-mark"><svg viewbox="0 0 24 24"><rect height="14" rx="3" width="14" x="5" y="5"></rect><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"></path><circle cx="12" cy="12" r="2.5"></circle></svg></span>
+<span>OpenRouter Proxy<small>Portfolio · IA &amp; APIs</small></span>
+</a>
+<nav aria-label="Navegación" class="nav-links">
+<a href="#problema">Visión</a>
+<a href="#como">Cómo funciona</a>
+<a href="#arquitectura">Arquitectura</a>
+<a href="#docs">Documentación</a>
+<a href="#comunidad">Comunidad</a>
+<a class="btn btn-ghost" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas" rel="noopener" style="padding:9px 15px" target="_blank">GitHub</a>
+</nav>
+</div>
 </header>
-
 <main id="top">
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <div class="eyebrow">IA · FASTAPI · ESP8266</div>
-      <h1>Un proxy.<br><span class='grad'>Muchos modelos.</span></h1>
-      <p class="lead">Una puerta de entrada minúscula a los modelos gratuitos de OpenRouter, con prioridad a los modelos chinos y failover automático. El ESP8266 solo hace un GET; el proxy resuelve el resto.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas" target="_blank" rel="noopener">Ver el repositorio <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-ghost" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas#readme" target="_blank" rel="noopener">Leer la documentación</a>
-      </div>
-      <div class="hero-badges"><span class="badge">Python 3.9+</span><span class="badge">FastAPI</span><span class="badge">OpenRouter</span><span class="badge">ESP8266</span><span class="badge">ArduinoJson</span><span class="badge">MIT</span></div>
-    </div>
-    <div class="hero-visual">
-      <div class="visual-frame"><img src="assets/architecture.svg" alt="Arquitectura del proxy OpenRouter entre el ESP8266 y los modelos"></div>
-      <div class="visual-caption">El ESP8266 solo habla con el proxy; el proxy habla con OpenRouter.</div>
-      <div class="float-chip"><span class="live-dot"></span>GET /api/query?q=...</div>
-    </div>
-  </div>
+<div class="wrap hero-grid">
+<div class="hero-copy">
+<div class="eyebrow">IA · FASTAPI · ESP8266</div>
+<h1>Un proxy.<br/><span class="grad">Muchos modelos.</span></h1>
+<p class="lead">Una puerta de entrada minúscula a los modelos gratuitos de OpenRouter, con prioridad a los modelos chinos y failover automático. El ESP8266 solo hace un GET; el proxy resuelve el resto.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas" rel="noopener" target="_blank">Ver el repositorio <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="btn btn-ghost" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas#readme" rel="noopener" target="_blank">Leer la documentación</a>
+</div>
+<div class="hero-badges"><span class="badge">Python 3.9+</span><span class="badge">FastAPI</span><span class="badge">OpenRouter</span><span class="badge">ESP8266</span><span class="badge">ArduinoJson</span><span class="badge">MIT</span></div>
+</div>
+<div class="hero-visual">
+<div class="visual-frame"><img alt="Arquitectura del proxy OpenRouter entre el ESP8266 y los modelos" src="assets/architecture.svg"/></div>
+<div class="visual-caption">El ESP8266 solo habla con el proxy; el proxy habla con OpenRouter.</div>
+<div class="float-chip"><span class="live-dot"></span>GET /api/query?q=...</div>
+</div>
+</div>
 </section>
-
-<section class="stats"><div class="wrap stats-grid"><div class="stat"><div class="stat-value">1</div><div class="stat-label">endpoint público</div></div><div class="stat"><div class="stat-value">0</div><div class="stat-label">SDKs en el micro</div></div><div class="stat"><div class="stat-value">8001</div><div class="stat-label">puerto del proxy</div></div><div class="stat"><div class="stat-value">∞</div><div class="stat-label">modelos detrás</div></div></div></section>
-
+<section class="stats"><div class="wrap stats-grid"><div class="stat"><div class="stat-value">1</div><div class="stat-label">endpoint público</div></div><div class="stat"><div class="stat-value">0</div><div class="stat-label">SDKs en el micro</div></div><div class="stat"><div class="stat-value">8001</div><div class="stat-label">puerto del proxy</div></div><div class="stat"><div class="stat-value">∞</div><div class="stat-label">modelos detrás</div></div></div></section><section class="section" id="concepto"><div class="wrap"><div class="section-head"><div class="kicker">El concepto</div><h2>Qué es y por qué existe</h2><p class="section-sub">El problema, el enfoque y el alcance real del proyecto.</p></div><div class="concept-grid"><div><p>Proxy OpenRouter IA Chinas es un servicio FastAPI local que reduce el catálogo de modelos gratuitos de OpenRouter a un único GET /api/query?q=..., con respuesta JSON de cuatro campos (ok, model, text, error). Prioriza proveedores chinos, aplica cooldown a los modelos que fallan y mantiene la API key fuera del dispositivo. Incluye un firmware para ESP8266 que solo hace HTTP plano a la LAN.</p><p>Está dirigido a prototipos con microcontroladores y a scripts que necesitan un contrato mínimo y estable frente a un catálogo volátil. No es un servidor de inferencia, no tiene autenticación de entrada, no persiste estado ni ofrece SLA, y no transmite streaming al cliente: acumula la respuesta y la devuelve completa. El failover cubre la creación del stream, no los errores que aparecen al abrirlo, deuda declarada en la documentación.</p></div><div class="concept-side"><div class="k">Cómo leer esta ficha</div><p>Los tropiezos salen de la bitácora y de las versiones tempranas. La evaluación usa seis criterios fijos, de 1 a 5, y no premia la espectacularidad: premia que el proyecto se pueda reproducir y entender.</p></div></div></div></section>
 <section class="section" id="problema">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">01 — La idea</div>
-      <h2>La IA no cabe en un ESP8266. Pero puede pedirla.</h2>
-      <p class="section-sub">El micro no necesita entender de tokens, modelos ni claves: solo necesita una URL que le devuelva texto útil.</p>
-    </div>
-    <div class="split">
-      <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5M12 17v.01"/></svg></div><h3>El problema</h3><p>Los modelos interesantes viven detrás de APIs con JSON, cabeceras y claves. Un ESP8266 tiene poca RAM y ninguna ganas de implementing TLS con un cliente HTTP completo. Además, los modelos gratuitos cambian de disponibilidad y devuelven 429 sin avisar.</p></div>
-      <div class="card reveal"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg></div><h3>La solución</h3><p>Un proxy FastAPI mantiene el pool de modelos, elige primero los modelos chinos disponibles, rota ante errores y devuelve una respuesta compacta. El firmware solo llama a /api/query?q=... y muestra el texto.</p></div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">01 — La idea</div>
+<h2>La IA no cabe en un ESP8266. Pero puede pedirla.</h2>
+<p class="section-sub">El micro no necesita entender de tokens, modelos ni claves: solo necesita una URL que le devuelva texto útil.</p>
+</div>
+<div class="split">
+<div class="card reveal"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"></path><path d="M12 9v5M12 17v.01"></path></svg></div><h3>El problema</h3><p>Los modelos interesantes viven detrás de APIs con JSON, cabeceras y claves. Un ESP8266 tiene poca RAM y ninguna ganas de implementing TLS con un cliente HTTP completo. Además, los modelos gratuitos cambian de disponibilidad y devuelven 429 sin avisar.</p></div>
+<div class="card reveal"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><rect height="12" rx="2" width="12" x="6" y="6"></rect><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"></path><rect height="5" rx="1" width="5" x="9.5" y="9.5"></rect></svg></div><h3>La solución</h3><p>Un proxy FastAPI mantiene el pool de modelos, elige primero los modelos chinos disponibles, rota ante errores y devuelve una respuesta compacta. El firmware solo llama a /api/query?q=... y muestra el texto.</p></div>
+</div>
+</div>
 </section>
-
 <section class="section tight" id="como">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">02 — El recorrido</div>
-      <h2>Cómo funciona, paso a paso</h2>
-      <p class="section-sub">Del pulsador al modelo, sin que el micro se entere de la complejidad.</p>
-    </div>
-    <div class="timeline reveal"><div class="step"><div class="step-num">01</div><div class="step-body"><h3>El micro pregunta</h3><p>El ESP8266 envía el texto a GET /api/query?q=... por HTTP. Sin SDK, sin claves y sin JSON elaborado.</p></div></div><div class="step"><div class="step-num">02</div><div class="step-body"><h3>El proxy elige</h3><p>FastAPI consulta su pool de modelos $0, prioriza los modelos chinos y descarta los que están en cooldown.</p></div></div><div class="step"><div class="step-num">03</div><div class="step-body"><h3>Si falla, rota</h3><p>Un 429 o un timeout no cortan la experiencia: el proxy pasa al siguiente candidato y registra el incidente.</p></div></div><div class="step"><div class="step-num">04</div><div class="step-body"><h3>La respuesta vuelve</h3><p>El micro recibe un cuerpo corto y legible, listo para mostrar en pantalla o leer por serial.</p></div></div></div>
-  </div>
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">02 — El recorrido</div>
+<h2>Cómo funciona, paso a paso</h2>
+<p class="section-sub">Del pulsador al modelo, sin que el micro se entere de la complejidad.</p>
+</div>
+<div class="timeline reveal"><div class="step"><div class="step-num">01</div><div class="step-body"><h3>El micro pregunta</h3><p>El ESP8266 envía el texto a GET /api/query?q=... por HTTP. Sin SDK, sin claves y sin JSON elaborado.</p></div></div><div class="step"><div class="step-num">02</div><div class="step-body"><h3>El proxy elige</h3><p>FastAPI consulta su pool de modelos $0, prioriza los modelos chinos y descarta los que están en cooldown.</p></div></div><div class="step"><div class="step-num">03</div><div class="step-body"><h3>Si falla, rota</h3><p>Un 429 o un timeout no cortan la experiencia: el proxy pasa al siguiente candidato y registra el incidente.</p></div></div><div class="step"><div class="step-num">04</div><div class="step-body"><h3>La respuesta vuelve</h3><p>El micro recibe un cuerpo corto y legible, listo para mostrar en pantalla o leer por serial.</p></div></div></div>
+</div>
 </section>
-
 <section class="section tight" id="arquitectura">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">03 — Bajo el capó</div>
-      <h2>Un actor, muchos proveedores</h2>
-      <p class="section-sub">El proxy concentra credenciales, selección y resiliencia; el firmware queda deliberadamente tonto.</p>
-    </div>
-    <figure class="figure reveal"><img src="assets/architecture.svg" alt="Arquitectura del proxy OpenRouter entre el ESP8266 y los modelos" loading="lazy"><figcaption>El ESP8266 solo habla con el proxy; el proxy habla con OpenRouter.</figcaption></figure>
-    <div class="arch-points reveal"><div class="card"><h4>Selección con criterio</h4><p>El pool prioriza modelos chinos y gratuitos, pero mantiene alternativas para no depender de un solo proveedor.</p></div><div class="card"><h4>Cooldown real</h4><p>Cuando un modelo devuelve 429, se marca y se saca de rotación temporalmente. El siguiente request no vuelve a tropezar.</p></div><div class="card"><h4>Superficie mínima</h4><p>El micro nunca ve la API key ni el catálogo completo. Solo ve una URL y un texto.</p></div></div>
-  </div>
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">03 — Bajo el capó</div>
+<h2>Un actor, muchos proveedores</h2>
+<p class="section-sub">El proxy concentra credenciales, selección y resiliencia; el firmware queda deliberadamente tonto.</p>
+</div>
+<figure class="figure reveal"><img alt="Arquitectura del proxy OpenRouter entre el ESP8266 y los modelos" loading="lazy" src="assets/architecture.svg"/><figcaption>El ESP8266 solo habla con el proxy; el proxy habla con OpenRouter.</figcaption></figure>
+<div class="arch-points reveal"><div class="card"><h4>Selección con criterio</h4><p>El pool prioriza modelos chinos y gratuitos, pero mantiene alternativas para no depender de un solo proveedor.</p></div><div class="card"><h4>Cooldown real</h4><p>Cuando un modelo devuelve 429, se marca y se saca de rotación temporalmente. El siguiente request no vuelve a tropezar.</p></div><div class="card"><h4>Superficie mínima</h4><p>El micro nunca ve la API key ni el catálogo completo. Solo ve una URL y un texto.</p></div></div>
+</div>
 </section>
-
 <section class="section tight">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">04 — Lo que lo hace distinto</div>
-      <h2>Decisiones de ingeniería</h2>
-      <p class="section-sub">Cada decisión está pensada para que el cliente más débil sea el que menos complejidad cargue.</p>
-    </div>
-    <div class="features reveal"><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div><h3>Failover en cadena</h3><p>Si el primer modelo falla, el proxy prueba el siguiente sin cambiar el contrato del cliente.</p></div><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 14 4-4"/><circle cx="12" cy="14" r="1.5"/></svg></div><h3>Cooldown de 429</h3><p>Los modelos saturados descansan y vuelven solos cuando termina la ventana.</p></div><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Clave fuera del micro</h3><p>La credencial vive en el servidor. El ESP8266 no guarda secretos.</p></div><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></svg></div><h3>Contrato de un GET</h3><p>Diseñado para clientes con poca RAM: sin OAuth, sin SDK y sin payloads grandes.</p></div><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg></div><h3>Pool configurable</h3><p>Los modelos y prioridades se editan en configuración, no en el firmware.</p></div><div class="feature"><div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h3l2-7 4 14 3-9 2 4h6"/></svg></div><h3>Respuesta compacta</h3><p>El texto se devuelve listo para pantalla o para el puerto serial.</p></div></div>
-  </div>
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">04 — Lo que lo hace distinto</div>
+<h2>Decisiones de ingeniería</h2>
+<p class="section-sub">Cada decisión está pensada para que el cliente más débil sea el que menos complejidad cargue.</p>
+</div>
+<div class="features reveal"><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg></div><h3>Failover en cadena</h3><p>Si el primer modelo falla, el proxy prueba el siguiente sin cambiar el contrato del cliente.</p></div><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0"></path><path d="m12 14 4-4"></path><circle cx="12" cy="14" r="1.5"></circle></svg></div><h3>Cooldown de 429</h3><p>Los modelos saturados descansan y vuelven solos cuando termina la ventana.</p></div><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6L12 3Z"></path><path d="m9 12 2 2 4-4"></path></svg></div><h3>Clave fuera del micro</h3><p>La credencial vive en el servidor. El ESP8266 no guarda secretos.</p></div><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><path d="m7 9 3 3-3 3M13 15h4"></path></svg></div><h3>Contrato de un GET</h3><p>Diseñado para clientes con poca RAM: sin OAuth, sin SDK y sin payloads grandes.</p></div><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5"></path><path d="m3 17 9 5 9-5"></path></svg></div><h3>Pool configurable</h3><p>Los modelos y prioridades se editan en configuración, no en el firmware.</p></div><div class="feature"><div class="icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M2 12h3l2-7 4 14 3-9 2 4h6"></path></svg></div><h3>Respuesta compacta</h3><p>El texto se devuelve listo para pantalla o para el puerto serial.</p></div></div>
+</div>
 </section>
-
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="gallery"><figure class="figure"><img src="assets/deployment.svg" alt="OpenRouter Proxy — deployment" loading="lazy"><figcaption>Deployment</figcaption></figure><figure class="figure"><img src="assets/request-flow.svg" alt="OpenRouter Proxy — request flow" loading="lazy"><figcaption>Request Flow</figcaption></figure></div></div></section>
-
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="gallery"><figure class="figure"><img alt="OpenRouter Proxy — deployment" loading="lazy" src="assets/deployment.svg"/><figcaption>Deployment</figcaption></figure><figure class="figure"><img alt="OpenRouter Proxy — request flow" loading="lazy" src="assets/request-flow.svg"/><figcaption>Request Flow</figcaption></figure></div></div></section>
 <section class="section tight">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">06 — Stack y arranque</div>
-      <h2>Con qué está construido</h2>
-      <p class="section-sub">FastAPI y httpx del lado servidor; ArduinoJson y ESP8266WiFi del lado micro. El firmware es un cliente HTTP deliberadamente simple.</p>
-    </div>
-    <div class="stack-grid">
-      <div class="reveal">
-        <div class="chips"><span class="chip">Python 3.9+</span><span class="chip">FastAPI</span><span class="chip">httpx</span><span class="chip">OpenRouter</span><span class="chip">ESP8266</span><span class="chip">ArduinoJson</span><span class="chip">PlatformIO</span></div>
-        <div class="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg><span>La clave de OpenRouter se configura por entorno. No se versiona.</span></div>
-      </div>
-      <div class="terminal reveal">
-        <div class="terminal-bar"><i></i><i></i><i></i><span>proxy-openrouter · arranque</span></div>
-        <pre><span class="p">$</span> python3 -m venv .venv
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">06 — Stack y arranque</div>
+<h2>Con qué está construido</h2>
+<p class="section-sub">FastAPI y httpx del lado servidor; ArduinoJson y ESP8266WiFi del lado micro. El firmware es un cliente HTTP deliberadamente simple.</p>
+</div>
+<div class="stack-grid">
+<div class="reveal">
+<div class="chips"><span class="chip">Python 3.9+</span><span class="chip">FastAPI</span><span class="chip">httpx</span><span class="chip">OpenRouter</span><span class="chip">ESP8266</span><span class="chip">ArduinoJson</span><span class="chip">PlatformIO</span></div>
+<div class="note"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6L12 3Z"></path><path d="m9 12 2 2 4-4"></path></svg><span>La clave de OpenRouter se configura por entorno. No se versiona.</span></div>
+</div>
+<div class="terminal reveal">
+<div class="terminal-bar"><i></i><i></i><i></i><span>proxy-openrouter · arranque</span></div>
+<pre><span class="p">$</span> python3 -m venv .venv
 <span class="p">$</span> source .venv/bin/activate
 <span class="p">$</span> pip install -r requirements.txt
 <span class="p">$</span> export OPENROUTER_API_KEY=sk-or-...
 <span class="p">$</span> uvicorn app:app --host 0.0.0.0 --port 8001</pre>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </section>
-
 <section class="section tight" id="docs">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">07 — Documentación</div>
-      <h2>Todo está escrito</h2>
-      <p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p>
-    </div>
-    <div class="docs-grid reveal"><a class="doc-card" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/README.md" target="_blank" rel="noopener"><span class="tag">README</span><h3>La guía completa</h3><p>Instalación, configuración, firmware, contrato HTTP y límites.</p><span class="arrow">Abrir documento <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/datasheet.md" target="_blank" rel="noopener"><span class="tag">DATASHEET</span><h3>Manual de operación</h3><p>Puesta en marcha, variables, endpoints, códigos de error y mantenimiento.</p><span class="arrow">Abrir documento <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/developer.md" target="_blank" rel="noopener"><span class="tag">DEVELOPER</span><h3>Guía de código</h3><p>Módulos, pool de modelos, cooldown, failover y cómo extenderlo.</p><span class="arrow">Abrir documento <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/REFERENCES.md" target="_blank" rel="noopener"><span class="tag">REFERENCES</span><h3>Referencias</h3><p>OpenRouter, FastAPI, ArduinoJson y documentación del ESP8266.</p><span class="arrow">Abrir documento <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
-  </div>
+<div class="wrap">
+<div class="section-head reveal">
+<div class="kicker">07 — Documentación</div>
+<h2>Todo está escrito</h2>
+<p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p>
+</div>
+<div class="docs-grid reveal"><a class="doc-card" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/README.md" rel="noopener" target="_blank"><span class="tag">README</span><h3>La guía completa</h3><p>Instalación, configuración, firmware, contrato HTTP y límites.</p><span class="arrow">Abrir documento <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/datasheet.md" rel="noopener" target="_blank"><span class="tag">DATASHEET</span><h3>Manual de operación</h3><p>Puesta en marcha, variables, endpoints, códigos de error y mantenimiento.</p><span class="arrow">Abrir documento <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/developer.md" rel="noopener" target="_blank"><span class="tag">DEVELOPER</span><h3>Guía de código</h3><p>Módulos, pool de modelos, cooldown, failover y cómo extenderlo.</p><span class="arrow">Abrir documento <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a><a class="doc-card" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/REFERENCES.md" rel="noopener" target="_blank"><span class="tag">REFERENCES</span><h3>Referencias</h3><p>OpenRouter, FastAPI, ArduinoJson y documentación del ESP8266.</p><span class="arrow">Abrir documento <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></div>
+</div>
 </section>
-
-<section class="cta">
-  <div class="wrap">
-    <div class="cta-card reveal">
-      <div class="kicker" style="justify-content:center">Portfolio · 21 proyectos</div>
-      <h2>¿Te animás?</h2>
-      <p>Usá esto como base y referencia para darle IA a un ESP8266 sin meterle HTTPS ni JSON pesado, con un solo GET. Este proyecto es la prueba de que se puede hacer con componentes reales.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://wanderc137.github.io/" target="_blank" rel="noopener">Ver todos los proyectos <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-ghost" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas" target="_blank" rel="noopener">Explorar el código</a>
-      </div>
-    </div>
-  </div>
+<section class="section tight"><div class="wrap"><div class="section-head"><div class="kicker">Tropiezos</div><h2>Los tropiezos, documentados</h2><p class="section-sub">Lo que no funcionó en las primeras versiones, con la corrección aplicada.</p></div><div class="fail-grid"><div class="fail"><div class="v">firmware_esp8266 · puesta en marcha</div><h3>La ESP8266 no veía la red WiFi</h3><p>La red disponible era de 5 GHz y el ESP8266 solo asocia 2.4 GHz, así que la placa fallaba tras 20 segundos de intentos. Se usó el SSID gemelo de 2.4 GHz en la misma subred y la restricción quedó escrita en el sketch y en la guía del cliente.</p></div><div class="fail"><div class="v">firmware_esp8266 · parseo</div><h3>El JSON no entraba en el buffer de 8 KB</h3><p>DynamicJsonDocument(8192) se quedaba corto con respuestas largas en UTF-8 y el sketch reportaba "No se pudo parsear JSON". Se mantuvo el buffer y se aceptaron respuestas moderadas; calcular la capacidad o filtrar max_chars en el servidor quedó pendiente.</p></div><div class="fail"><div class="v">v1.0 · failover</div><h3>El failover no cubre errores al abrir el stream</h3><p>El router captura excepciones alrededor de la creación del generador, no de su iteración, de modo que un 429 inicial no dispara cooldown ni cambio de modelo. Está documentado como deuda funcional principal, sin corregir en esta fase.</p></div><div class="fail"><div class="v">v1.0 · operación</div><h3>Key ausente detectada tarde</h3><p>El servicio arrancaba y todas las consultas fallaban con 401. run.sh ahora valida el prefijo sk-or-v1- antes de arrancar y server.py emite un WARNING, pero la comprobación es sintáctica y no verifica la clave contra OpenRouter.</p></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head"><div class="kicker">Evaluación</div><h2>Cómo se mide este proyecto</h2><p class="section-sub">Seis criterios fijos, con la evidencia que respalda cada nota.</p></div><div class="rating-head"><div class="rating-avg">3.7<small>/5</small></div><p>Sirve para conectar un microcontrolador a un modelo gratuito sin exponer la key ni implementar TLS en el dispositivo. La limitación que más pesa es que el failover no cubre el error al abrir el stream, justo el caso de un 429.</p></div><div class="rating"><div class="rating-row"><div class="rating-name">Madurez</div><div class="rating-bar"><span style="width:60%"></span></div><div class="rating-score">3/5</div><div class="rating-note">Dos endpoints, pool con cooldown y firmware compilable; sin tests automatizados y con el failover incompleto declarado.</div></div><div class="rating-row"><div class="rating-name">Reproducibilidad</div><div class="rating-bar"><span style="width:60%"></span></div><div class="rating-score">3/5</div><div class="rating-note">Python 3.9+ (probado en 3.12), cuatro dependencias sin pin y puerto 8001; el firmware exige editar WiFi, IP y clave dentro del .ino.</div></div><div class="rating-row"><div class="rating-name">Documentación</div><div class="rating-bar"><span style="width:80%"></span></div><div class="rating-score">4/5</div><div class="rating-note">README de 40 KB, datasheet de 15 KB, developer de 21 KB, guía de firmware y bitácora con tabla de 10 deudas; quedan comentarios que mencionan el puerto 8000 en lugar de 8001.</div></div><div class="rating-row"><div class="rating-name">Honestidad de límites</div><div class="rating-bar"><span style="width:100%"></span></div><div class="rating-score">5/5</div><div class="rating-note">El README advierte en el flujo de failover que el try/except envuelve el generador, y la bitácora lista deuda, impacto y corrección sugerida para cada punto.</div></div><div class="rating-row"><div class="rating-name">Valor demostrativo</div><div class="rating-bar"><span style="width:80%"></span></div><div class="rating-score">4/5</div><div class="rating-note">Contrato de cuatro campos para un cliente de 80 KB de RAM, prioridad por proveedor con regex ancladas y cooldown de 300 s ampliado a 600 s tras 429.</div></div><div class="rating-row"><div class="rating-name">Facilidad de despliegue</div><div class="rating-bar"><span style="width:60%"></span></div><div class="rating-score">3/5</div><div class="rating-note">run.sh en primer plano y .env con la key; el cliente requiere arduino-cli, red 2.4 GHz y credenciales WiFi embebidas en el sketch.</div></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head"><div class="kicker">Preguntas</div><h2>Lo que suelen preguntar</h2></div><div class="faq"><details><summary>¿Qué es Proxy OpenRouter IA Chinas?</summary><p>Un proxy FastAPI local que elige un modelo gratuito de OpenRouter, prioriza proveedores chinos y devuelve la respuesta en un JSON de cuatro campos consumible por un ESP8266.</p></details><details><summary>¿Es un servicio listo para producción?</summary><p>No. Corre en una LAN doméstica, no tiene autenticación de entrada, no persiste estado y depende de que existan modelos con pricing "0" en OpenRouter.</p></details><details><summary>¿Cómo se despliega?</summary><p>Se instala requirements, se define OPENROUTER_API_KEY en .env y se lanza run.sh en el puerto 8001; el firmware se compila con arduino-cli para esp8266:esp8266:nodemcuv2.</p></details><details><summary>¿Qué se puede reutilizar?</summary><p>El pool dinámico con filtro estricto de precio, la política de orden por proveedor chino y el contrato GET mínimo pensado para clientes con RAM y TLS limitados.</p></details></div></div></section><section class="cta">
+<div class="wrap">
+<div class="cta-card reveal">
+<div class="kicker" style="justify-content:center">Portfolio · 21 proyectos</div>
+<h2>¿Te animás?</h2>
+<p>Usá esto como base y referencia para darle IA a un ESP8266 sin meterle HTTPS ni JSON pesado, con un solo GET. Este proyecto es la prueba de que se puede hacer con componentes reales.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://wanderc137.github.io/" rel="noopener" target="_blank">Ver todos los proyectos <svg viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="btn btn-ghost" href="https://github.com/wanderc137/proxy-openrouter-ia-chinas" rel="noopener" target="_blank">Explorar el código</a>
+</div>
+</div>
+</div>
 </section>
 </main>
-
 <footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="foot-brand"><span class="brand-mark"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/><circle cx="12" cy="12" r="2.5"/></svg></span>OpenRouter Proxy</div>
-        <p class="foot-p">Un proxy pequeño para que la IA quepa en cualquier lugar.</p>
-      </div>
-      <div>
-        <h4>Este proyecto</h4>
-        <div class="foot-links">
-          <a href="https://github.com/wanderc137/proxy-openrouter-ia-chinas" target="_blank" rel="noopener">Repositorio en GitHub</a>
-          <a href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/README.md" target="_blank" rel="noopener">README técnico</a>
-          <a href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/datasheet.md" target="_blank" rel="noopener">Datasheet</a>
-          <a href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/developer.md" target="_blank" rel="noopener">Guía de desarrollador</a>
-          <a href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/REFERENCES.md" target="_blank" rel="noopener">Referencias</a>
-        </div>
-      </div>
-      <div>
-        <h4>Otros proyectos</h4>
-        <div class="foot-links"><a href="https://wanderc137.github.io/netEspNow-v1.4/">netEspNow</a><a href="https://wanderc137.github.io/nb2700-telemetria/">NB2700 Telemetría</a><a href="https://wanderc137.github.io/mega-free-chat/">Mega Free Chat</a><a href="https://wanderc137.github.io/CubeCell-LoRaWAN-Node-v1.3/">CubeCell LoRaWAN Bridge v1.3</a><a href="https://wanderc137.github.io/CashDroController/">CashDro Controller</a><a href="https://wanderc137.github.io/BusAccel-8266-v4/">BusAccel</a><a href="https://wanderc137.github.io/SpeechToTextAuxPy/">SpeechToText Aux</a><a href="https://wanderc137.github.io/teleAsistenciaV1.3/">Alerta Mayor</a><a href="https://wanderc137.github.io/TotemAutoatencion/">Totem Autoatención</a><a href="https://wanderc137.github.io/turnero/">Turnero</a><a href="https://wanderc137.github.io/valvulas-zigbee/">Válvulas Zigbee</a><a href="https://wanderc137.github.io/mesacerca/">MesaCerca</a><a href="https://wanderc137.github.io/permaweb-app/">Permaweb App</a><a href="https://wanderc137.github.io/AnalizadorRostroUNOQ/">AnalizadorRostro v1</a></div>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span><a href="https://wanderc137.github.io/">Portfolio</a> · © 2026 wanderc137 · Licencia MIT</span>
-      <span>Diseñado y construido por wanderc137</span>
-    </div>
-  </div>
+<div class="wrap">
+<div class="foot-grid">
+<div>
+<div class="foot-brand"><span class="brand-mark"><svg viewbox="0 0 24 24"><rect height="14" rx="3" width="14" x="5" y="5"></rect><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"></path><circle cx="12" cy="12" r="2.5"></circle></svg></span>OpenRouter Proxy</div>
+<p class="foot-p">Un proxy pequeño para que la IA quepa en cualquier lugar.</p>
+</div>
+<div>
+<h4>Este proyecto</h4>
+<div class="foot-links">
+<a href="https://github.com/wanderc137/proxy-openrouter-ia-chinas" rel="noopener" target="_blank">Repositorio en GitHub</a>
+<a href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/README.md" rel="noopener" target="_blank">README técnico</a>
+<a href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/datasheet.md" rel="noopener" target="_blank">Datasheet</a>
+<a href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/developer.md" rel="noopener" target="_blank">Guía de desarrollador</a>
+<a href="https://github.com/wanderc137/proxy-openrouter-ia-chinas/blob/main/docs/REFERENCES.md" rel="noopener" target="_blank">Referencias</a>
+</div>
+</div>
+<div>
+<h4>Otros proyectos</h4>
+<div class="foot-links"><a href="https://wanderc137.github.io/netEspNow-v1.4/">netEspNow</a><a href="https://wanderc137.github.io/nb2700-telemetria/">NB2700 Telemetría</a><a href="https://wanderc137.github.io/mega-free-chat/">Mega Free Chat</a><a href="https://wanderc137.github.io/CubeCell-LoRaWAN-Node-v1.3/">CubeCell LoRaWAN Bridge v1.3</a><a href="https://wanderc137.github.io/CashDroController/">CashDro Controller</a><a href="https://wanderc137.github.io/BusAccel-8266-v4/">BusAccel</a><a href="https://wanderc137.github.io/SpeechToTextAuxPy/">SpeechToText Aux</a><a href="https://wanderc137.github.io/teleAsistenciaV1.3/">Alerta Mayor</a><a href="https://wanderc137.github.io/TotemAutoatencion/">Totem Autoatención</a><a href="https://wanderc137.github.io/turnero/">Turnero</a><a href="https://wanderc137.github.io/valvulas-zigbee/">Válvulas Zigbee</a><a href="https://wanderc137.github.io/mesacerca/">MesaCerca</a><a href="https://wanderc137.github.io/permaweb-app/">Permaweb App</a><a href="https://wanderc137.github.io/AnalizadorRostroUNOQ/">AnalizadorRostro v1</a></div>
+</div>
+</div>
+<div class="foot-bottom">
+<span><a href="https://wanderc137.github.io/">Portfolio</a> · © 2026 wanderc137 · Licencia MIT</span>
+<span>Diseñado y construido por wanderc137</span>
+</div>
+</div>
 </footer>
-
 <script>
 (function(){
   var io = new IntersectionObserver(function(entries){
@@ -446,8 +466,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);pa
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 })();
 </script>
-
 <script>window.PORTFOLIO_COMMUNITY = {"account": "wanderc137", "repo": "proxy-openrouter-ia-chinas", "coinNamespace": "wanderc137-proxy-openrouter-ia-chinas-coins-v1", "faqs": [{"q": "¿Qué problema resuelve?", "a": "Expone un <code>GET /api/query?q=...</code> para que un ESP8266 use modelos gratuitos de OpenRouter sin implementar HTTPS, JSON pesado ni failover."}, {"q": "¿Cómo elige el modelo?", "a": "Descubre modelos $0, prioriza los chinos y hace failover cuando uno falla o devuelve 429."}, {"q": "¿Qué puerto usa?", "a": "<b>8001</b> por defecto; el firmware del ESP8266 apunta a ese puerto."}, {"q": "¿Qué pasa con los 429?", "a": "El proxy aplica cooldown y pasa al siguiente modelo del pool."}, {"q": "¿Cuáles son los límites?", "a": "Los modelos gratuitos cambian, no hay autenticación de usuarios y el pool depende de OpenRouter."}]};</script>
-<script src="assets/community.js?v=5" defer></script>
+<script defer="" src="assets/community.js?v=5"></script>
 </body>
 </html>

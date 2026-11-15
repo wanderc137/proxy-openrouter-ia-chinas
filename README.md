@@ -1199,3 +1199,55 @@ mencionados.
 <p align="center">
   <sub>Hecho para entender qué pasa entre pulsar ENTER en un ESP8266 y recibir una respuesta.</sub>
 </p>
+
+## Ficha de evaluación
+
+**Madurez global: 3.7/5**
+
+| Criterio | Nota | Evidencia |
+|---|---:|---|
+| Madurez | 3/5 | Dos endpoints, pool con cooldown y firmware compilable; sin tests automatizados y con el failover incompleto declarado. |
+| Reproducibilidad | 3/5 | Python 3.9+ (probado en 3.12), cuatro dependencias sin pin y puerto 8001; el firmware exige editar WiFi, IP y clave dentro del .ino. |
+| Documentación | 4/5 | README de 40 KB, datasheet de 15 KB, developer de 21 KB, guía de firmware y bitácora con tabla de 10 deudas; quedan comentarios que mencionan el puerto 8000 en lugar de 8001. |
+| Honestidad de límites | 5/5 | El README advierte en el flujo de failover que el try/except envuelve el generador, y la bitácora lista deuda, impacto y corrección sugerida para cada punto. |
+| Valor demostrativo | 4/5 | Contrato de cuatro campos para un cliente de 80 KB de RAM, prioridad por proveedor con regex ancladas y cooldown de 300 s ampliado a 600 s tras 429. |
+| Facilidad de despliegue | 3/5 | run.sh en primer plano y .env con la key; el cliente requiere arduino-cli, red 2.4 GHz y credenciales WiFi embebidas en el sketch. |
+
+Sirve para conectar un microcontrolador a un modelo gratuito sin exponer la key ni implementar TLS en el dispositivo. La limitación que más pesa es que el failover no cubre el error al abrir el stream, justo el caso de un 429.
+
+## Lo que no funcionó
+
+### firmware_esp8266 · puesta en marcha — La ESP8266 no veía la red WiFi
+
+La red disponible era de 5 GHz y el ESP8266 solo asocia 2.4 GHz, así que la placa fallaba tras 20 segundos de intentos. Se usó el SSID gemelo de 2.4 GHz en la misma subred y la restricción quedó escrita en el sketch y en la guía del cliente.
+
+### firmware_esp8266 · parseo — El JSON no entraba en el buffer de 8 KB
+
+DynamicJsonDocument(8192) se quedaba corto con respuestas largas en UTF-8 y el sketch reportaba "No se pudo parsear JSON". Se mantuvo el buffer y se aceptaron respuestas moderadas; calcular la capacidad o filtrar max_chars en el servidor quedó pendiente.
+
+### v1.0 · failover — El failover no cubre errores al abrir el stream
+
+El router captura excepciones alrededor de la creación del generador, no de su iteración, de modo que un 429 inicial no dispara cooldown ni cambio de modelo. Está documentado como deuda funcional principal, sin corregir en esta fase.
+
+### v1.0 · operación — Key ausente detectada tarde
+
+El servicio arrancaba y todas las consultas fallaban con 401. run.sh ahora valida el prefijo sk-or-v1- antes de arrancar y server.py emite un WARNING, pero la comprobación es sintáctica y no verifica la clave contra OpenRouter.
+
+## Preguntas típicas
+
+**¿Qué es Proxy OpenRouter IA Chinas?**
+
+Un proxy FastAPI local que elige un modelo gratuito de OpenRouter, prioriza proveedores chinos y devuelve la respuesta en un JSON de cuatro campos consumible por un ESP8266.
+
+**¿Es un servicio listo para producción?**
+
+No. Corre en una LAN doméstica, no tiene autenticación de entrada, no persiste estado y depende de que existan modelos con pricing "0" en OpenRouter.
+
+**¿Cómo se despliega?**
+
+Se instala requirements, se define OPENROUTER_API_KEY en .env y se lanza run.sh en el puerto 8001; el firmware se compila con arduino-cli para esp8266:esp8266:nodemcuv2.
+
+**¿Qué se puede reutilizar?**
+
+El pool dinámico con filtro estricto de precio, la política de orden por proveedor chino y el contrato GET mínimo pensado para clientes con RAM y TLS limitados.
+
